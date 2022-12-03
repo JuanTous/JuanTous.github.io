@@ -11,7 +11,7 @@
     e.preventDefault();
     document.querySelector(".loading").style.display = "block"
 
-    let body = {date: moment().add(5, 'h').format("YYYY-MM-DD HH:mm:ss")}
+    let body = {}
 
     form.querySelectorAll(".form-group input").forEach(e => {
       body[e.name] = e.value
