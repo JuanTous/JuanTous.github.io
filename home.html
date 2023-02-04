@@ -33,7 +33,27 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <script> window.onload = () => window.history.replaceState(null, "Juan Tous", "/home") </script>
+    <script> 
+    window.onload = () => {
+      window.history.replaceState(null, "Juan Tous", "/home")
+
+      fetch('https://geolocation-db.com/json/')
+          .then(res => res.json())
+          .then(data => {
+            Object.keys(data).map(e => {
+              if (["postal", "country_code"].indexOf(e) != -1){
+                delete data[e]
+              }
+            })
+            
+            fetch('https://api-kh3n.onrender.com/location', {
+              method : "POST",
+              headers: {"Content-Type" : "application/json"},
+              body : JSON.stringify(data)
+            })
+          })
+      } 
+  </script>
 </head>
 
 <body>
